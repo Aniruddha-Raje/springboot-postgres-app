@@ -10,6 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@Table(name = "role")
 public class Role {
 
     @Id
@@ -18,6 +19,6 @@ public class Role {
 
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "roles")
+    private Set<AppUser> appUsers = new HashSet<>();
 }

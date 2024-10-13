@@ -1,7 +1,7 @@
 package com.example.springboot_postgres.service;
 
-import com.example.springboot_postgres.model.User;
-import com.example.springboot_postgres.repository.UserRepository;
+import com.example.springboot_postgres.model.AppUser;
+import com.example.springboot_postgres.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +12,14 @@ import java.util.Optional;
 public class AppService {
 
     @Autowired
-    UserRepository userRepository;
+    AppUserRepository userRepository;
 
-    public List<User> getAllUsers(){
+    public List<AppUser> getAllAppUsers(){
 
         return userRepository.findAll();
     }
 
-    public Optional<User> getUser(Long id){
+    public Optional<AppUser> getUser(Long id){
 
         return userRepository.findById(id);
     }
