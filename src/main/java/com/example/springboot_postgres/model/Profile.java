@@ -1,5 +1,6 @@
 package com.example.springboot_postgres.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +13,8 @@ public class Profile {
 
     private String bio;
 
+    @JsonBackReference
     @OneToOne
-    @JoinColumn(name = "app_user_id")
+    @JoinColumn(name = "app_user_id", unique = true)
     private AppUser appUser;
 }

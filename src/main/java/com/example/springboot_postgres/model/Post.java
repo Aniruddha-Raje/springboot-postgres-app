@@ -1,5 +1,6 @@
 package com.example.springboot_postgres.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,7 @@ public class Post {
 
     private String content;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "app_user_id")
     private AppUser appUser;
