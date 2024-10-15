@@ -1,5 +1,6 @@
 package com.example.springboot_postgres.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Role {
 
     private String name;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "roles")
     private Set<AppUser> appUsers = new HashSet<>();
 }

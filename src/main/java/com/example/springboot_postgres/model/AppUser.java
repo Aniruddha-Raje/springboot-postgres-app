@@ -1,6 +1,5 @@
 package com.example.springboot_postgres.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,15 +26,16 @@ public class AppUser {
     private String email;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "profile_id")
     private Profile profile;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Post> posts = new ArrayList<>();
 
-    @JsonBackReference
-    @ManyToMany
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
